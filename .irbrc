@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
  require 'irb/completion'
  require 'map_by_method'
