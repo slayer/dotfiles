@@ -1,0 +1,13 @@
+#!/bin/sh
+
+function relink() {
+	[ -e $1 ] && rm -i $1
+	ln -sfn $2 $1
+}
+
+cd ~
+for f in ~/dotfiles/.*; do 
+	base=`basename $f`
+	[ "$base" = "." -o "$base" = ".." -o "$base" = "mkln" ] && continue
+	relink $base $f
+done

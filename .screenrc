@@ -63,7 +63,7 @@ bind ^] paste [.]
 hardstatus on
 hardstatus string woody
 
-encoding KOI8-R
+encoding UTF-8
 
 bind R screen -t '# |# ' /bin/su - root
 
