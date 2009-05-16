@@ -14,23 +14,8 @@ PROMPT_COMMAND='history -a'
 HISTCONTROL=ignoreboth
 export LS_OPTIONS='--color=auto'
 eval `dircolors`
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -lh'
-alias l='ls  $LS_OPTIONS -lAh'
-alias la='ls $LS_OPTIONS -lah'
-alias lt='/usr/local/bin/colortail -f -k /etc/colortail.syslog /var/log/xconsole-1'
-alias df='df -h'
 
-alias esx='exec screen -x'
-alias essh='exec ssh'
-alias j=jobs
-alias ..="cd .."
-alias c=clear
-alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
-alias h=history
-alias q=exit
-alias mtr="mtr --curses" 
-alias grep="grep --exclude '*.svn*'"
+. ~/.aliases
 
 function	sshm()           { ssh root@midge-$1; }
 function    sshr()			 { ssh root@$1; }
@@ -82,8 +67,3 @@ esac
 export HOST=`hostname -s`
 export PATH=$PATH:$HOME/bin:./
 
-if [ -x `which colordiff` ]; then
-	alias diff=colordiff
-	function cvsdiff () { cvs diff $@ | colordiff; }
-	function svndiff () { svn diff $@ | colordiff; }
-fi
