@@ -8,6 +8,8 @@ function relink() {
 cd ~
 for f in ~/dotfiles/.*; do 
 	base=`basename $f`
-	[ "$base" = "." -o "$base" = ".." -o "$base" = "mkln" -o "$base" = ".git" ] && continue
+	case "$base" in
+		.|..|mkln|.git|.gitignore) continue;;
+	esac
 	relink $base $f
 done
