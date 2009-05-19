@@ -6,10 +6,10 @@ function relink() {
 }
 
 cd ~
-for f in ~/dotfiles/.*; do 
+for f in ~/dotfiles/*; do 
 	base=`basename $f`
 	case "$base" in
-		.|..|mkln|.git|.gitignore) continue;;
+		mkln|.git|.gitignore) echo "skipping $base"; continue;;
 	esac
-	relink $base $f
+	relink ".$base" "$f"
 done
