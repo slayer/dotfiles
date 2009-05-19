@@ -231,6 +231,8 @@ set complete+=t
 filetype plugin indent on
 au BufRead,BufNewFile *.phps    set filetype=php
 au BufRead,BufNewFile *.thtml    set filetype=php
+au BufRead,BufNewFile *.rb		set tabstop=2 shiftwidth=2 expandtab autoindent number smarttab
+au BufRead,BufNewFile *.rb		let g:rubycomplete_rails=1
 
 " Настройки для SessionMgr
 let g:SessionMgr_AutoManage = 0
