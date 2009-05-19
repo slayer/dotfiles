@@ -11,6 +11,8 @@ alias esx='exec screen -x'
 alias essh='exec ssh'
 alias j=jobs
 alias ..="cd .."
+alias pu="pushd"
+alias po="popd"
 alias c=clear
 alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
 alias h=history
@@ -18,8 +20,55 @@ alias q=exit
 alias mtr="mtr --curses" 
 alias grep="grep --exclude '*.svn*'"
 
+##################
+# git section
+#
+alias g="git "
+alias gs='git status'
+alias gst='git status'
+alias gd='git diff'
+alias gdh='git diff HEAD'
+alias ga='git add'
+alias gc='git commit -v'
+alias gca='gc -a'
+alias gb='git branch'
+alias gl='git log'
+alias gpl='git pull'
+alias gp='git push'
+alias gpp='git pull; git push'
+
+function gco {
+	if [ -z "$1" ]; then
+		git checkout master
+	else
+		git checkout $1
+	fi
+}
+
+function st {
+	if [ -d ".svn" ]; then
+		svn status
+	else
+		git status
+	fi
+}
+
 if [ -x `which colordiff` ]; then
 	alias diff=colordiff
 	function cvsdiff () { cvs diff $@ | colordiff; }
 	function svndiff () { svn diff $@ | colordiff; }
 fi
+#
+##################
+
+
+
+
+##################
+# rails section
+
+alias sc='script/console'
+alias ss='script/server' # start up the beast; use "ss -d" to detach
+
+#
+##################

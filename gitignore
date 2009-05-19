@@ -1,0 +1,8 @@
+.*.sw?
+.svn
+*.pdf
+.DS_Store
+*.tmproj
+*.zip
+*.rar
+*.gz
