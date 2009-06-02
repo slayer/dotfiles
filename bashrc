@@ -8,14 +8,8 @@
 #if [[ -f /etc/bash_completion ]]; then
 #    #. /etc/bash_completion
 #fi
-export EDITOR=vi
-shopt -s histappend
-PROMPT_COMMAND='history -a'
-HISTCONTROL=ignoreboth
-export LS_OPTIONS='--color=auto'
-eval `dircolors`
+#PROMPT_COMMAND='history -a'
 
-. ~/.aliases
 
 function	sshm()           { ssh root@midge-$1; }
 function    sshr()			 { ssh root@$1; }
@@ -28,7 +22,7 @@ function    p                { ${PAGER}  $@; }
 function    e                { ${EDITOR} $@; }
 
 function    c                { clear; }
-function    h                { history $@; }
+function    h                { history $@ | grep "$1"; }
 function    hc               { history -c; }
 function    hcc              { hc;c; }
 function    cx               { hc;x; }
@@ -55,15 +49,9 @@ function    logread          { local file=/var/log/syslog; local cmd=less; [ "x$
 
 shopt -s cdspell checkwinsize cmdhist dotglob
 
-case "$TERM" in
-	xterm*|rxvt*|screen*)
-	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    TITLEBAR='\[\033]0;\u@\h:\w\007\]'
-	;;
-	*)
-	;;
-esac
-
-export HOST=`hostname -s`
-export PATH=$PATH:$HOME/bin:./
-
+. ~/.bashrc.d/misc-env.sh 
+. ~/.bashrc.d/aliases
+. ~/.bashrc.d/rails.sh
+. ~/.bashrc.d/path.sh 
+. ~/.bashrc.d/terminal.sh 
+. ~/.bashrc.d/git.sh 

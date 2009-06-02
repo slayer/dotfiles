@@ -1,31 +1,13 @@
 #!/bin/sh
 
 
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -lh'
-alias l='ls  $LS_OPTIONS -lAh'
-alias la='ls $LS_OPTIONS -lah'
-alias df='df -h'
-
-alias esx='exec screen -x'
-alias essh='exec ssh'
-alias j=jobs
-alias ..="cd .."
-alias pu="pushd"
-alias po="popd"
-alias c=clear
-alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
-alias h=history
-alias q=exit
-alias mtr="mtr --curses" 
-alias grep="grep --exclude '*.svn*'"
-
 ##################
 # git section
 #
 alias g="git "
 alias gs='git status'
 alias gst='git status'
+alias gsub='git submodule'
 alias gd='git diff'
 alias gdh='git diff HEAD'
 alias ga='git add'
@@ -34,7 +16,7 @@ alias gci='gc'
 alias gca='gc -a'
 alias gb='git branch'
 alias gl='git log'
-alias gpl='git pull'
+alias gpl='git pull origin master'
 alias gp='git push'
 alias gpp='git pull; git push'
 
@@ -63,13 +45,3 @@ fi
 ##################
 
 
-
-
-##################
-# rails section
-
-alias sc='script/console'
-alias ss='script/server' # start up the beast; use "ss -d" to detach
-
-#
-##################

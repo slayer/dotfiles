@@ -85,3 +85,9 @@ def vi *args
   nil
 end  
 
+
+def time(times = 1)
+	ret = nil
+	Benchmark.bm { |x| x.report { times.times { ret = yield } } }
+	ret
+end
