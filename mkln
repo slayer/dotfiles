@@ -9,7 +9,7 @@ cd ~
 for f in ~/dotfiles/*; do 
 	base=`basename $f`
 	case "$base" in
-		mkln|.git|.gitignore) echo "skipping $base"; continue;;
+		mkln|.*) echo "skipping $base"; continue;;
 	esac
 	relink ".$base" "$f"
 done
