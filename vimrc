@@ -264,4 +264,11 @@ autocmd BufRead *.c                             set cin
 set showmatch 
 " <End Vlad settings>
 
+" Отключаем мышь если нету графики
+if !has('gui_running')
+	set mouse=
+endif
 
+" Порядок применения кодировок и формата файлов
+set ffs=unix,dos,mac
+set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866

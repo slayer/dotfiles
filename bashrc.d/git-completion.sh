@@ -1650,7 +1650,7 @@ _git ()
 	bisect)      _git_bisect ;;
 	bundle)      _git_bundle ;;
 	branch)      _git_branch ;;
-	checkout)    _git_checkout ;;
+	checkout|co)    _git_checkout ;;
 	cherry)      _git_cherry ;;
 	cherry-pick) _git_cherry_pick ;;
 	clean)       _git_clean ;;
@@ -1714,6 +1714,7 @@ _gitk ()
 }
 
 complete -o default -o nospace -F _git git
+complete -o default -o nospace -F _git g
 complete -o default -o nospace -F _gitk gitk
 
 # The following are necessary only for Cygwin, and only are needed
