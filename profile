@@ -10,8 +10,9 @@ if [ -d ~/dotfiles ]; then
 	[ ! -r ~/dotfiles/.update ] && touch ~/dotfiles/.update
 
 	if [ ~/dotfiles/.update -ot ~/dotfiles/.now -a -x `which git-pull` ]; then
-		cd ~/dotfiles && git pull -q origin master 2>/dev/null &
+		( (cd ~/dotfiles && git pull -q origin master 2>/dev/null >/dev/null )& )
 		touch -d "`date --date='3 days' +%D`" ~/dotfiles/.update
 	fi
 fi
 
+[ -x /usr/bin/keychain ] && /usr/bin/keychain
