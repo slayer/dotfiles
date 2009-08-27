@@ -65,7 +65,7 @@ hardstatus string woody
 
 encoding UTF-8
 
-bind R screen -t '# |# ' /bin/su - root
+bind R screen -t '# |# ' /bin/su -l root
 
 caption always
 #caption string "%{rk} %c %{dd} %{+b M}%n%{dd} %{+b b} %t%{-b d}|  %w "
