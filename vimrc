@@ -272,3 +272,13 @@ endif
 " Порядок применения кодировок и формата файлов
 set ffs=unix,dos,mac
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
+
+
+source ~/.vim/vimrc
+
+colorscheme jellybeans
+set nu
+set sts=2
+set sw=2
+let g:fuzzy_ignore = "gems/*"
+set t_Co=256
