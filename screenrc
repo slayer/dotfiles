@@ -67,6 +67,8 @@ encoding UTF-8
 
 bind R screen -t '# |# ' /bin/su - root
 
+# use background color
+defbce on
 caption always
 #caption string "%{rk} %c %{dd} %{+b M}%n%{dd} %{+b b} %t%{-b d}|  %w "
 caption string "%{rk} %c %{dd} %{+b M}%n  %{-b dd}%-w%{+b B.}%n* %t%{-}%+w%<"
