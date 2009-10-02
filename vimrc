@@ -278,10 +278,3 @@ if filereadable("~/.vim/vimrc")
   source ~/.vim/vimrc
 endif
 
-
-colorscheme jellybeans
-set nu
-set sts=2
-set sw=2
-let g:fuzzy_ignore = "gems/*"
-set t_Co=256
