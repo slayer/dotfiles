@@ -274,7 +274,10 @@ set ffs=unix,dos,mac
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 
 
-source ~/.vim/vimrc
+if filereadable("~/.vim/vimrc")
+  source ~/.vim/vimrc
+endif
+
 
 colorscheme jellybeans
 set nu
