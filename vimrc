@@ -261,12 +261,12 @@ autocmd BufRead *.c                             set cin
 "colorscheme torte
 
 " проверка скобок
-set showmatch 
+set showmatch
 " <End Vlad settings>
 
 " Отключаем мышь если нету графики
 if !has('gui_running')
-	set mouse=
+  set mouse=
 endif
 
 " Порядок применения кодировок и формата файлов
@@ -274,7 +274,7 @@ set ffs=unix,dos,mac
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 
 
-if filereadable("~/.vim/vimrc")
+if filereadable(expand($HOME . "/.vim/vimrc"))
   source ~/.vim/vimrc
 endif
 
