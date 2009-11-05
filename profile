@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . ~/.bashrc
-[ `id -u` = 600 ] && calendar -A 5
+[ `id -u` = 600 -a -x /usr/bin/cpp  ] && calendar -A 5
 
 # Smart Git Pull one time in 3 days
 if [ -d ~/dotfiles ]; then
