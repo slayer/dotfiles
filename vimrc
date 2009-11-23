@@ -278,4 +278,6 @@ if filereadable(expand($HOME . "/.vim/vimrc"))
   source ~/.vim/vimrc
 endif
 
-colorscheme jellybeans
+if filereadable(expand($HOME . "/.vim/colors/jellybeans.vim"))
+  colorscheme jellybeans
+endif
