@@ -18,5 +18,5 @@ done
 cat .screenrc | sed 's/%HOSTNAME%/'`hostname -s`'/g' >.screenrc_ && mv .screenrc_ .screenrc
 
 echo -n "Do you want to install default authorized_keys? (yes/any): "
-read a && [ $a == yes ] && mkdir -p ~/.ssh && cp ~/dotfiles/.authorized_keys ~/.ssh/authorized_keys
+read a && [ $a == yes ] && mkdir -p ~/.ssh && cp ~/dotfiles/.authorized_keys ~/.ssh/authorized_keys && chmod u=r,go= ~/.ssh/authorized_keys
 
