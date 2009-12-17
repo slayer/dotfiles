@@ -1,0 +1,22 @@
+#!/bin/sh
+
+function relink() {
+	[ -e $1 ] && rm -i $1
+	ln -sfn $2 $1
+}
+
+cd ~
+for f in ~/dotfiles/*; do 
+	base=`basename $f`
+	case "$base" in
+		init|.*) echo "skipping $base"; continue;;
+	esac
+	relink ".$base" "$f"
+done
+
+
+cat .screenrc | sed 's/%HOSTNAME%/'`hostname -s`'/g' >/tmp/.screenrc && rm ~/.screenrc && cat /tmp/.screenrc > ~/.screenrc
+
+echo -n "Do you want to install default authorized_keys? (yes/any): "
+read a && [ "x$a" == xyes ] && mkdir -p ~/.ssh && cp ~/dotfiles/.authorized_keys ~/.ssh/authorized_keys && chmod u=r,go= ~/.ssh/authorized_keys
+
