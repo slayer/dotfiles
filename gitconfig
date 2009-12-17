@@ -26,6 +26,13 @@
 	co = checkout
 	df = diff
 	lg = log -p
+    l = log -C --decorate
+    ls = log -C --stat --decorate
+    lsp = log -C --stat -p --decorate
+    lg = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s'
+    lga = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all
+    l19 = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all -19
+    lsd = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all --simplify-by-decoration
 
 
 [core]
