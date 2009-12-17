@@ -61,7 +61,7 @@ bind ^] paste [.]
 # hardstatus alwayslastline "%w"
 
 hardstatus on
-hardstatus string woody
+hardstatus string %HOSTNAME%
 
 encoding UTF-8
 
@@ -74,7 +74,7 @@ caption always
 caption string "%{rk} %c %{dd} %{+b M}%n  %{-b dd}%-w%{+b B.}%n* %t%{-}%+w%<"
 shelltitle '$ |$ '
 
-bufferfile /home/vlad/tmp/vlad.swp
+bufferfile /tmp/.screen_swp
 
 bell_msg 'BELL on %n window' 
 
