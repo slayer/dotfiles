@@ -27,7 +27,6 @@ function    hc               { history -c; }
 function    hcc              { hc;c; }
 function    cx               { hc;x; }
 
-function    ..               { cd ..; }
 
 function    ff               { find . -name $@ -print; }
 
