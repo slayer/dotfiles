@@ -9,7 +9,7 @@ if [ -d ~/dotfiles ]; then
 	# create if .update does not exist
 	[ ! -r ~/dotfiles/.update ] && touch ~/dotfiles/.update
 
-	if [ ~/dotfiles/.update -ot ~/dotfiles/.now -a -x `which git-pull` ]; then
+	if [ ~/dotfiles/.update -ot ~/dotfiles/.now -a -x "`which git`" ]; then
 		( (cd ~/dotfiles && git pull -q origin master 2>/dev/null >/dev/null )& )
 		touch -d "`date --date='3 days' +%D`" ~/dotfiles/.update
 	fi
