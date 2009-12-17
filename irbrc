@@ -91,3 +91,13 @@ def time(times = 1)
 	Benchmark.bm { |x| x.report { times.times { ret = yield } } }
 	ret
 end
+
+if ENV['RAILS_ENV']
+  require 'rubygems'
+  begin
+    require 'hirb'
+    Hirb.enable
+  rescue LoadError
+    puts "Error loading Hirb. Run 'sudo gem install hirb'"
+  end
+end
