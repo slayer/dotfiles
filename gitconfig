@@ -26,6 +26,8 @@
 	co = checkout
 	df = diff
 	lg = log -p
+	pager = !$HOME/bin/git-pager \"$@\"
+	info = !$HOME/bin/git-info \"$@\"
 
 
 [core]
