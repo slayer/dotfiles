@@ -3,6 +3,10 @@
 . ~/.bashrc
 [ `id -u` = 600 -a -x /usr/bin/cpp  ] && calendar -A 5
 
+if [[ -f /etc/bash_completion ]]; then
+    . /etc/bash_completion
+fi
+
 # Smart Git Pull one time in 3 days
 if [ -d ~/dotfiles ]; then
 	touch ~/dotfiles/.now
