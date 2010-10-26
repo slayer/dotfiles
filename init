@@ -18,5 +18,17 @@ done
 cat .screenrc | sed 's/%HOSTNAME%/'`hostname -s`'/g' >/tmp/.screenrc && rm ~/.screenrc && cat /tmp/.screenrc > ~/.screenrc
 
 echo -n "Do you want to install default authorized_keys? (yes/any): "
-read a && [ "x$a" == xyes ] && mkdir -p ~/.ssh && cp ~/dotfiles/.authorized_keys ~/.ssh/authorized_keys && chmod u=r,go= ~/.ssh/authorized_keys
+read a && [ "x$a" == xyes ] && mkdir -p ~/.ssh && cat ~/dotfiles/.authorized_keys >>~/.ssh/authorized_keys && chmod u=r,go= ~/.ssh/authorized_keys
+
+requred_packages="vim colordiff ctags screen"
+which apt-get >/dev/null 2>&1 && manager="apt-get" || manager="yum"
+for p in requred_packages; do
+    if ! which $p >/dev/null 2>&1; then
+        echo -n "Do you want to install $p ? (y/any)"
+        read a && [ "x$a" == xy ] && $manager install $p
+    fi
+done
+
+echo -n "Do you want to clone vimfiles? (y/any): "
+read a && [ "x$a" == xy ] && git clone git://github.com/slayer/vimfiles.git ~/.vim && cd ~/.vim && git submodule init && git submodule update
 
