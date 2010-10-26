@@ -19,6 +19,7 @@ alias q=exit
 alias mtr="mtr --curses" 
 alias grep="grep --exclude '*.git*' --exclude '*.svn*'"
 alias s="sudo"
+alias r="rails"
 
 
 
