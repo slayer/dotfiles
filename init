@@ -22,7 +22,7 @@ read a && [ "x$a" == xyes ] && mkdir -p ~/.ssh && cat ~/dotfiles/.authorized_key
 
 requred_packages="vim colordiff ctags screen"
 which apt-get >/dev/null 2>&1 && manager="apt-get" || manager="yum"
-for p in requred_packages; do
+for p in $requred_packages; do
     if ! which $p >/dev/null 2>&1; then
         echo -n "Do you want to install $p ? (y/any)"
         read a && [ "x$a" == xy ] && $manager install $p
