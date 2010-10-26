@@ -72,9 +72,9 @@ set backspace=indent,eol,start whichwrap+=<,>,[,]
 set noexpandtab
 
 " Размер табулации по умолчанию
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 
 " Формат строки состояния
 set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
@@ -204,6 +204,14 @@ menu Encoding.utf-8 :e ++enc=utf8 <CR>
 " С-q - выход из Vim 
 map <C-Q> <Esc>:qa<cr>
 
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+
+
 
 " Автозавершение слов по tab =)
 function InsertTabWrapper()
@@ -281,3 +289,7 @@ endif
 if filereadable(expand($HOME . "/.vim/colors/jellybeans.vim"))
   colorscheme jellybeans
 endif
+
+" Открыть NERDTree
+"au VimEnter *  NERDTree
+
