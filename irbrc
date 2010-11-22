@@ -32,13 +32,13 @@ rescue LoadError
 end
 
 # Dynamic method finding; e.g., "hello".what? == 5 #=> ["length", "size"]
-begin
+#begin
 #  require File::expand_path("~/.irb_lib/method_finder")
-  require 'rubygems'
-  require 'what_methods'
-rescue LoadError
-  puts "Error loading method_finder. Run 'sudo gem install what_methods' to enable Object#what? method finding."
-end
+#  require 'rubygems'
+#  require 'what_methods'
+#rescue LoadError
+#  puts "Error loading method_finder. Run 'sudo gem install what_methods' to enable Object#what? method finding."
+#end
 
 # local_methods shows methods that are only available for a given object.
 class Object
@@ -94,6 +94,7 @@ end
 
 if ENV['RAILS_ENV']
   require 'rubygems'
+  require 'yaml'
   begin
     require 'hirb'
     Hirb.enable
