@@ -100,6 +100,8 @@ if ENV['RAILS_ENV']
     Hirb.enable
   rescue LoadError
     puts "Error loading Hirb. Run 'sudo gem install hirb'"
+  rescue
+    puts "Error initializing Hirb"
   end
 end
 

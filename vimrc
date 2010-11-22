@@ -204,6 +204,14 @@ menu Encoding.utf-8 :e ++enc=utf8 <CR>
 " С-q - выход из Vim 
 map <C-Q> <Esc>:qa<cr>
 
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+
+
 
 " Автозавершение слов по tab =)
 function InsertTabWrapper()
@@ -281,3 +289,7 @@ endif
 if filereadable(expand($HOME . "/.vim/colors/jellybeans.vim"))
   colorscheme jellybeans
 endif
+
+" Открыть NERDTree
+"au VimEnter *  NERDTree
+
