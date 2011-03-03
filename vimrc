@@ -77,7 +77,7 @@ set softtabstop=2
 set tabstop=2
 
 " Формат строки состояния
-set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
+set statusline=%<%f%h%m%r\ %b\ %{fugitive#statusline()}%{&encoding}\ 0x\ \ %l,%c%V\ %P 
 set laststatus=2
 
 " Включаем "умные" отспупы ( например, автоотступ после {)
@@ -293,3 +293,7 @@ endif
 " Открыть NERDTree
 "au VimEnter *  NERDTree
 
+nmap :Rm :Rmodel
+nmap :Rc :Rcontroller
+nmap :Rv :Rview
+nmap :Rh :Rhelper
