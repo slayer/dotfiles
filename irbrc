@@ -92,19 +92,6 @@ def time(times = 1)
 	ret
 end
 
-if ENV['RAILS_ENV']
-  require 'rubygems'
-  require 'yaml'
-  begin
-    require 'hirb'
-    Hirb.enable
-  rescue LoadError
-    puts "Error loading Hirb. Run 'sudo gem install hirb'"
-  rescue
-    puts "Error initializing Hirb"
-  end
-end
-
 
 begin
     require "ap"
@@ -153,6 +140,20 @@ def time(times = 1)
   ret = nil
   Benchmark.bm { |x| x.report { times.times { ret = yield } } }
   ret
+end
+
+if ENV['RAILS_ENV'] || defined?(Rails)
+  require 'rubygems'
+  require 'yaml'
+  begin
+    require 'hirb'
+    Hirb.enable
+  rescue LoadError
+    puts "Error loading Hirb. Run 'sudo gem install hirb'"
+  rescue
+    puts "Error initializing Hirb"
+  end
+  Thread.new { sleep 3; show_log; reload!; }
 end
 
 # IRB configuration reloading
