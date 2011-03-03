@@ -17,6 +17,9 @@ HISTCONTROL=ignoreboth
 shopt -s checkwinsize
 shopt -s histappend
 
+# Disable Ctrl-S
+stty stop ''
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
