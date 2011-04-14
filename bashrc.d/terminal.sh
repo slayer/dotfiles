@@ -18,7 +18,7 @@ shopt -s checkwinsize
 shopt -s histappend
 
 # Disable Ctrl-S
-stty stop ''
+stty stop '' 2>/dev/null
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
