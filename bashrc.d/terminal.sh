@@ -23,3 +23,8 @@ stty stop '' 2>/dev/null
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
+# make history more friendly
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
+
