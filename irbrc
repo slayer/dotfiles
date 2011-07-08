@@ -100,7 +100,7 @@ rescue LoadError => err
 end
 
 begin
-  require 'looksee/shortcuts'
+  require 'looksee'
 
   Looksee.styles.merge!(
     :module => "\e[1;34m%s\e[0m" # purple
@@ -108,11 +108,6 @@ begin
 rescue LoadError
   puts "Cannot find looksee. Please run 'gem install looksee' to install it."
 end
-
-
-
-
-
 
 # Rails on-screen logging
 
@@ -167,3 +162,6 @@ end
 def sql(query)
   ActiveRecord::Base.connection.select_all(query)
 end
+
+
+
