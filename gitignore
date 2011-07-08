@@ -1,4 +1,7 @@
+*.orig
 .*.sw?
+*~
+*.log
 .svn
 *.pdf
 .DS_Store
@@ -6,3 +9,8 @@
 *.zip
 *.rar
 *.gz
+Thumbs.db
+nbproject
+TAGS
+.idea/
+.sass-cache
