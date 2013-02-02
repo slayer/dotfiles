@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function relink() {
 	[ -e $1 ] && rm -i $1
@@ -6,7 +6,7 @@ function relink() {
 }
 
 cd ~
-for f in ~/dotfiles/*; do 
+for f in ~/dotfiles/*; do
 	base=`basename $f`
 	case "$base" in
 		init|.*) echo "skipping $base"; continue;;
