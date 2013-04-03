@@ -25,7 +25,7 @@ which apt-get >/dev/null 2>&1 && manager="apt-get" || manager="yum"
 for p in $requred_packages; do
     if ! which $p >/dev/null 2>&1; then
         echo -n "Do you want to install $p ? (y/any)"
-        read a && [ "x$a" == xy ] && $manager install $p
+        read a && [ "x$a" == xy ] && $manager -y install $p
     fi
 done
 
