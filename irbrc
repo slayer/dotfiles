@@ -178,6 +178,11 @@ def cj obj
   puts Pygments.highlight(JSON.pretty_generate(obj), :lexer => 'json', :formatter => 'terminal',  :options => {:encoding => 'utf-8'})
 end
 
+
+Dir["#{File.expand_path('~')}/.rails.d/*.rb"].each do |file|
+  load file
+end
+
 if defined? Hirb
   def hirb obj, opts = {}
     puts Hirb::Helpers::AutoTable.render(obj, opts)
