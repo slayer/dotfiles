@@ -21,6 +21,7 @@ alias gl='git log'
 alias gpl='git pull origin master'
 alias gp='git push'
 alias gpp='git pull; git push'
+alias gcp='git cherry-pick'
 
 function gco {
 	if [ -z "$1" ]; then
