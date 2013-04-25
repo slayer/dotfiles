@@ -20,7 +20,7 @@ def uf id
   when Integer
     User.find id
   when String
-    User.where(email: id).first
+    User.where(:email.like => "#{id}%").first
   end
 end
 
