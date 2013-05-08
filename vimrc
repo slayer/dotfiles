@@ -329,6 +329,7 @@ Bundle 'Syntastic'
 Bundle "pangloss/vim-javascript"
 Bundle "vim-haml"
 Bundle "vim-coffee-script"
+Bundle 'endwise.vim'
 Bundle 'Tagbar'
 nmap <F8> :TagbarToggle<CR>
 
