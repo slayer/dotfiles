@@ -1,4 +1,4 @@
-
+" 
 "-------------------------
 " Базовые настройки
 "-------------------------
@@ -7,17 +7,17 @@
 set nocompatible
 
 " Показывать положение курсора всё время.
-set ruler  
+set ruler
 
 " Показывать незавершённые команды в статусбаре
-set showcmd  
+set showcmd
 
 " Выключаем нумерацию строк
 set nonu
 
 " Фолдинг по отсупам
 set foldmethod=indent
-set foldlevel=3
+set foldlevel=6
 
 " Поиск по набору текста (очень полезная функция)
 set incsearch
@@ -36,7 +36,7 @@ set scrolloff=3
 
 " Выключаем надоедливый "звонок"
 set novisualbell
-set t_vb=   
+set t_vb=
 
 " Поддержка мыши
 set mouse=a
@@ -77,7 +77,7 @@ set softtabstop=2
 set tabstop=2
 
 " Формат строки состояния
-set statusline=%<%f%h%m%r\ %b\ %{fugitive#statusline()}%{&encoding}\ 0x\ \ %l,%c%V\ %P 
+set statusline=%<%f%h%m%r\ %b\ %{fugitive#statusline()}%{&encoding}\ 0x\ \ %l,%c%V\ %P
 set laststatus=2
 
 " Включаем "умные" отспупы ( например, автоотступ после {)
@@ -157,9 +157,9 @@ vmap <F7> <esc>:bn<cr>i
 imap <F7> <esc>:bn<cr>i
 
 " F8 - список закладок
-map <F8> :MarksBrowser<cr>
-vmap <F8> <esc>:MarksBrowser<cr>
-imap <F8> <esc>:MarksBrowser<cr>
+" DELME map <F8> :MarksBrowser<cr>
+" DELME vmap <F8> <esc>:MarksBrowser<cr>
+" DELME imap <F8> <esc>:MarksBrowser<cr>
 
 " F9 - "make" команда
 map <F9> :make<cr>
@@ -190,7 +190,7 @@ imap >Ins> <Esc>i
 
 " Меню выбора кодировки текста (koi8-r, cp1251, cp866, utf8)
 set wildmenu
-set wcm=<Tab> 
+set wcm=<Tab>
 menu Encoding.koi8-r :e ++enc=koi8-r<CR>
 menu Encoding.windows-1251 :e ++enc=cp1251<CR>
 menu Encoding.cp866 :e ++enc=cp866<CR>
@@ -201,7 +201,7 @@ menu Encoding.utf-8 :e ++enc=utf8 <CR>
 " Аналогично и для {
 "imap {<CR> {<CR>}<Esc>O
 
-" С-q - выход из Vim 
+" С-q - выход из Vim
 map <C-Q> <Esc>:qa<cr>
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
@@ -232,11 +232,10 @@ set complete+=.
 set complete+=k
 " Из других открытых буферов
 set complete+=b
-" из тегов 
+" из тегов
 set complete+=t
 
-" Включаем filetype плугин. Настройки, специфичные для определынных файлов мы разнесём по разным местам
-filetype plugin indent on
+" Настройки, специфичные для определынных файлов мы разнесём по разным местам
 au BufRead,BufNewFile *.phps    set filetype=php
 au BufRead,BufNewFile *.thtml    set filetype=php
 au BufRead,BufNewFile *.rb		set tabstop=2 shiftwidth=2 expandtab autoindent number smarttab
@@ -259,7 +258,7 @@ set background=dark
 " указать цвет комментариев
 highlight Comment ctermfg=darkgreen
 highlight Comment ctermfg=darkgrey
-set ignorecase 
+set ignorecase
 
 " q добавление {  }
 "autocmd BufRead *.c inoremap { {<CR>}<Esc>O
@@ -286,7 +285,7 @@ if filereadable(expand($HOME . "/.vim/vimrc"))
   source ~/.vim/vimrc
 endif
 
-call pathogen#infect()
+"call pathogen#infect()
 
 if filereadable(expand($HOME . "/.vim/colors/jellybeans.vim"))
   colorscheme jellybeans
@@ -299,3 +298,58 @@ nmap :Rm :Rmodel
 nmap :Rc :Rcontroller
 nmap :Rv :Rview
 nmap :Rh :Rhelper
+
+" А это маленький хинт, который позволяет по нажатию клавиши ; сконструировать запрос на замену слова под курсором:
+nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
+
+map <A-Up>    <C-W>k
+map <A-Down>  <C-W>j
+map <A-Left>  <C-W>h
+map <A-Right> <C-W>l
+
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+filetype plugin indent on " обязательно!
+
+
+Bundle 'L9'
+Bundle 'tpope/vim-fugitive'
+Bundle 'lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'FuzzyFinder'
+Bundle 'rails.vim'
+Bundle 'The-NERD-tree'
+Bundle 'MatchTag'
+Bundle "cucumber.zip"
+Bundle "Markdown"
+Bundle "ragtag.vim"
+Bundle "jQuery"
+Bundle 'Syntastic'
+Bundle "pangloss/vim-javascript"
+Bundle "vim-haml"
+Bundle "vim-coffee-script"
+Bundle 'Tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" Utility
+Bundle "repeat.vim"
+Bundle "surround.vim"
+Bundle "SuperTab"
+Bundle "file-line"
+Bundle "Align"
+Bundle 'ctrlp.vim'
+
+Bundle 'badwolf'
+Bundle 'molokai'
+colorscheme molokai
+
+" tComment
+Bundle "tComment"
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
+
+
+
+set nowrap
+set lsp=1 " межстрочный интервал"
