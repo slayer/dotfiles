@@ -23,6 +23,4 @@ alias r="rails"
 alias be="bundle exec"
 alias rmswp="find . -name *.swp -a -type f | xargs rm "
 alias sshsocks="ssh -fCND 1080 "
-
-
-
+alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
