@@ -1,4 +1,4 @@
-" 
+
 "-------------------------
 " Базовые настройки
 "-------------------------
@@ -254,10 +254,10 @@ set mps-=[:]
 
 " <Start Vlad settings>
 " насильно заставить его считать, что терминал с темным фоном
-set background=dark
+" set background=dark
 " указать цвет комментариев
-highlight Comment ctermfg=darkgreen
-highlight Comment ctermfg=darkgrey
+" highlight Comment ctermfg=darkgreen
+" highlight Comment ctermfg=darkgrey
 set ignorecase
 
 " q добавление {  }
@@ -307,6 +307,66 @@ map <A-Down>  <C-W>j
 map <A-Left>  <C-W>h
 map <A-Right> <C-W>l
 
+
+"allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+"store lots of :cmdline history
+set history=1000
+
+set showcmd     "show incomplete cmds down the bottom
+set showmode    "show current mode down the bottom
+
+set incsearch   "find the next match as we type the search
+set hlsearch    "hilight searches by default
+
+set showbreak=...
+set wrap linebreak nolist
+
+"mapping for command key to map navigation thru display lines instead
+"of just numbered lines
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
+
+"add some line space for easy reading
+set linespace=4
+
+"disable visual bell
+set visualbell t_vb=
+
+"try to make possible to navigate within lines of wrapped lines
+nmap <Down> gj
+nmap <Up> gk
+set fo=l
+
+"statusline setup
+set statusline=%f       "tail of the filename
+
+"Git
+set statusline+=%{fugitive#statusline()}
+
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+
+"turn off needless toolbar on gvim/mvim
+set guioptions-=T
+set formatoptions-=o "dont continue comments when pushing o/O
+
+
+"/
+
+
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -315,7 +375,7 @@ filetype plugin indent on " обязательно!
 
 Bundle 'L9'
 Bundle 'tpope/vim-fugitive'
-Bundle 'lokaltog/vim-easymotion'
+" Bundle 'lokaltog/vim-easymotion'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'FuzzyFinder'
 Bundle 'rails.vim'
@@ -327,7 +387,7 @@ Bundle "ragtag.vim"
 Bundle "jQuery"
 Bundle 'Syntastic'
 Bundle "pangloss/vim-javascript"
-Bundle "vim-haml"
+" Bundle "vim-haml"
 Bundle "vim-coffee-script"
 Bundle 'endwise.vim'
 Bundle 'Tagbar'
@@ -340,10 +400,18 @@ Bundle "SuperTab"
 Bundle "file-line"
 Bundle "Align"
 Bundle 'ctrlp.vim'
+Bundle 'delimitMate.vim'
 
 Bundle 'badwolf'
 Bundle 'molokai'
-colorscheme molokai
+Bundle 'railscasts'
+Bundle 'twilight256.vim'
+Bundle 'jellybeans.vim'
+Bundle 'morhetz/gruvbox'
+Bundle 'zeis/vim-kolor'
+" colorscheme molokai
+colorscheme badwolf
+" colorscheme railscasts
 
 " tComment
 Bundle "tComment"
@@ -351,6 +419,56 @@ nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 
+if has("gui_running")
+    "tell the term has 256 colors
+    set t_Co=256
+
+    colorscheme railscasts
+    set guitablabel=%M%t
+    set lines=40
+    set columns=115
+
+    if has("gui_gnome")
+        set term=gnome-256color
+        colorscheme railscasts
+        set guifont=Monospace\ 11
+    endif
+
+    if has("gui_mac") || has("gui_macvim")
+        set guifont=Menlo:h14
+        " key binding for Command-T to behave properly
+        " uncomment to replace the Mac Command-T key to Command-T plugin
+        "macmenu &File.New\ Tab key=<nop>
+        "map <D-t> :CommandT<CR>
+        " make Mac's Option key behave as the Meta key
+    endif
+
+    if has("gui_win32") || has("gui_win32s")
+        set guifont=Consolas:h12
+        set enc=utf-8
+    endif
+else
+    "dont load csapprox if there is no gui support - silences an annoying warning
+    let g:CSApprox_loaded = 1
+
+
+    "set railscasts colorscheme when running vim in gnome terminal
+    if $COLORTERM == 'gnome-terminal'
+				set t_Co=256
+        set term=gnome-256color
+        colorscheme badwolf
+    else
+        colorscheme default
+    endif
+endif
 
 set nowrap
 set lsp=1 " межстрочный интервал"
+if &term =~ '256color'
+	" Disable Background Color Erase (BCE) so that color schemes
+	" work properly when Vim is used inside tmux and GNU screen.
+	" See also http://snk.tuxfamily.org/log/vim-256color-bce.html
+	set t_ut=
+endif
+set ttyfast " ?
+
