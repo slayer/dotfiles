@@ -29,6 +29,10 @@ for p in $requred_packages; do
     fi
 done
 
-echo -n "Do you want to clone vimfiles? (y/any): "
-read a && [ "x$a" == xy ] && git clone git://github.com/slayer/vimfiles.git ~/.vim && cd ~/.vim && git submodule init && git submodule update
+echo -n "Do you want to install vundle? (y/any): "
+if read a && [ "x$a" == xy ]; then
+	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
+	vim +BundleInstall
+fi
+#  && git clone git://github.com/slayer/vimfiles.git ~/.vim && cd ~/.vim && git submodule init && git submodule update
 
