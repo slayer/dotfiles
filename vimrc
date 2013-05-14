@@ -238,8 +238,9 @@ set complete+=t
 " Настройки, специфичные для определынных файлов мы разнесём по разным местам
 au BufRead,BufNewFile *.phps    set filetype=php
 au BufRead,BufNewFile *.thtml    set filetype=php
-au BufRead,BufNewFile *.rb		set tabstop=2 shiftwidth=2 expandtab autoindent number smarttab
-au BufRead,BufNewFile *.rb		let g:rubycomplete_rails=1
+au BufRead,BufNewFile *.rb		set tabstop=2 shiftwidth=2 expandtab autoindent number smarttab foldmethod=syntax
+au BufRead,BufNewFile *.rb		let g:Rubycomplete_rails=1
+au BufRead,BufNewFile *.rb		let g:ruby_fold = 1
 
 " Настройки для SessionMgr
 let g:SessionMgr_AutoManage = 0
@@ -458,7 +459,7 @@ else
         set term=gnome-256color
         colorscheme badwolf
     else
-        colorscheme default
+        colorscheme badwolf
     endif
 endif
 
