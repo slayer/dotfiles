@@ -1,0 +1,46 @@
+
+# hirb view for a route
+class Hirb::Helpers::Route < Hirb::Helpers::AutoTable
+  def self.render(output, options = {})
+    super( output.requirements.map{ |k,v|
+      [k, v.inspect]
+    }, options.merge({
+      :headers     => [output.name || '', "#{ output.verb || 'ANY' } #{ output.path }"],
+      :unicode     => true,
+      :description => nil,
+    }) )
+  end
+end
+Hirb.add_view ActionDispatch::Routing::Route, :class => Hirb::Helpers::Route
+
+# short and long route list
+def routes(long_output = false)
+  if long_output
+    Rails.application.routes.routes.each{ |e|
+      puts Hirb::Helpers::Route.render(e)
+    }
+    true
+  else
+    Hirb::Console.render_output Rails.application.routes.routes.map{|e|
+      [e.name || '', e.verb || 'ANY', e.path]
+    },{
+      :class   => Hirb::Helpers::AutoTable,
+      :headers => %w<name verb path>,
+    }
+  end
+end
+
+# get a specific route via index or name
+def route(index_or_name)
+  route = case index_or_name
+  when Integer
+    Rails.application.routes.routes[ index_or_name ]
+  when Symbol # named route
+    Rails.application.routes.named_routes.get index_or_name
+  end
+end
+
+# access to routeset for easy recognize / generate
+def r 
+  ActionController::Routing::Routes
+end
