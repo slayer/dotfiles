@@ -29,6 +29,23 @@ module DatabaseHelpers
     true
   end
 
-  # ...
+  # TODO
+  def indexes
+    ActiveRecord::Base.connection.tables.map do |table|
+      ActiveRecord::Base.connection.select_values("SHOW INDEXES FROM #{table}")
+    end
+  end
+
+  def table_size
+    dbname = Rails.application.class.config.database_configuration[Rails.env]["database"]
+    query = %(SELECT table_name AS "Tables", 
+    round(((data_length + index_length) / 1024 / 1024), 2) "size" 
+    FROM information_schema.TABLES 
+    WHERE table_schema = "#{dbname}";)
+
+    result = ActiveRecord::Base.connection.select_all(query)
+    hirb result.sort{|a, b| a["size"] <=> b["size"] }
+  end
+
 end
 def db; DatabaseHelpers; end
