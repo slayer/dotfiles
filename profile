@@ -20,3 +20,8 @@ if [ -d ~/dotfiles ]; then
 fi
 
 [ -x /usr/bin/keychain ] && /usr/bin/keychain
+
+if [ -d "$HOME/.rbenv" ]; then
+	export PATH="$HOME/.rbenv/bin:$PATH"
+	eval "$(rbenv init -)"
+fi
