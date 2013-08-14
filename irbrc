@@ -169,8 +169,13 @@ def y obj
 end
 
 def j obj
-  require 'json'
-  puts JSON.pretty_generate(obj)
+	require 'multi_json' rescue nil
+	require 'json' rescue nil
+	if defined?(MultiJson)
+		puts MultiJson.dump obj, :pretty => true
+	else
+		puts JSON.pretty_generate(obj)
+	end
 end
 
 def cj obj
