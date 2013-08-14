@@ -403,6 +403,12 @@ Bundle "file-line"
 Bundle "Align"
 Bundle 'ctrlp.vim'
 Bundle 'delimitMate.vim'
+Bundle 'bling/vim-airline'
+	let g:airline_enable_fugitive=1
+	let g:airline_enable_syntastic=1
+	let g:airline_enable_bufferline=1
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
 
 Bundle 'badwolf'
 Bundle 'molokai'
