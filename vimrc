@@ -365,6 +365,12 @@ set guioptions-=T
 set formatoptions-=o "dont continue comments when pushing o/O
 
 
+" Removes trailing spaces
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
 "/
 
 
@@ -390,6 +396,7 @@ Bundle 'Syntastic'
 Bundle "pangloss/vim-javascript"
 " Bundle "vim-haml"
 Bundle "vim-coffee-script"
+Bundle 'coffee.vim'
 Bundle 'less.vim'
 Bundle 'endwise.vim'
 Bundle 'Tagbar'
