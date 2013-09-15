@@ -7,6 +7,6 @@ begin
   def hirb obj, options = {}
     puts Hirb::Helpers::AutoTable.render(obj, options)
   end
-rescue
+rescue LoadError
   nil
 end
