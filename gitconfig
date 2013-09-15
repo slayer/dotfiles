@@ -48,3 +48,5 @@
 [user]
 	email = github@vlad.org.ua
 	name = Vladislav Moskovets
+[push]
+	default = simple
