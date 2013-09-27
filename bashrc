@@ -40,17 +40,17 @@ function  duk              { du -sclk $@; }
 function  dum              { du -sclm $@; }
 
 function  dfk              { df -PTak $@; }
-function  dfm              { df -PTam $@; }
+function  df_m             { df -PTam $@; }
 function  dfh              { df -PTah $@; }
 function  dfi              { df -PTai $@; }
 function  logread          { local file=/var/log/syslog; local cmd=less; [ "x$1x" = "x-fx" ] && { cmd="tail -f "; shift; }; [ -n "$1" ] && file="`find /var/log/${1}*log`"; $cmd $file; }
 
 shopt -s cdspell checkwinsize cmdhist dotglob
 
-. ~/.bashrc.d/misc-env.sh 
+. ~/.bashrc.d/misc-env.sh
 . ~/.bashrc.d/aliases
 . ~/.bashrc.d/rails.sh
-. ~/.bashrc.d/path.sh 
-. ~/.bashrc.d/terminal.sh 
-. ~/.bashrc.d/git.sh 
+. ~/.bashrc.d/path.sh
+. ~/.bashrc.d/terminal.sh
+. ~/.bashrc.d/git.sh
 [ -r ~/.bashrc.d/local.sh ] && . ~/.bashrc.d/local.sh
