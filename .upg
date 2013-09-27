@@ -1,0 +1,7 @@
+#!/bin/sh
+
+files=`ls -la ~ | grep '/dotfiles' | awk '{print $9}'`
+echo "Removing: $files"
+# rm $files
+cd ~/dotfiles && git checkout -b dfm origin/dfm && ~/dotfiles/dfm
+
