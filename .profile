@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . ~/.bashrc
-[ `id -un` = vlad -a -x /usr/bin/cpp  ] && calendar -A 5
+[ `id -u` = 600 -a -x /usr/bin/cpp  ] && calendar -A 5
 
 if [[ -f /etc/bash_completion ]]; then
     . /etc/bash_completion
@@ -16,7 +16,6 @@ if [ -d ~/dotfiles ]; then
 	if [ ~/dotfiles/.update -ot ~/dotfiles/.now -a -x "`which git`" ]; then
 		( (cd ~/dotfiles && git pull -q origin master 2>/dev/null >/dev/null )& )
 		touch -d "`date --date='3 days' +%D`" ~/dotfiles/.update
-		[ -x ~/dotfiles/.upgrade ] && ~/dotfiles/.upgrade
 	fi
 fi
 
