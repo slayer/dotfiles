@@ -3,7 +3,7 @@
 set -e
 
 cd /tmp
-git checkout https://github.com/slayer/dotfiles.git
+git clone https://github.com/slayer/dotfiles.git
 cd /tmp/dotfiles
 git checkout -b dfm origin/dfm
 mv ~/dotfiles ~/dotfiles.old
