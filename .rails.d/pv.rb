@@ -5,11 +5,15 @@ end
 def sf id = nil
   case id
   when Integer
-    sel = id > 100_000 ? :origin_id : :id
-    Survey::MR.where(sel => id).first
+    Survey::MR.where(id: id).first
+  when String
+    if id =~ /\d+-\d+/
+      Survey::MR.where(origin_id: id).first
+    else
+      Survey::MR.where(:title.like id).first
+    end
   when Array
-    sel = id[0] > 100_000 ? :origin_id : :id
-    Survey::MR.where(sel => id)
+    Survey::MR.where(id: id)
   else
     Survey::MR.last
   end
