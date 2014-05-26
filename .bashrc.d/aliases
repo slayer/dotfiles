@@ -19,7 +19,6 @@ alias q=exit
 alias mtr="mtr --curses"
 alias grep="grep --exclude '*.git*' --exclude '*.svn*' --exclude '*.sw?'"
 alias s="sudo"
-alias r="rails"
 alias be="bundle exec"
 alias rmswp="find . -name *.swp -a -type f | xargs rm "
 alias sshsocks="ssh -fCND 1080 "
