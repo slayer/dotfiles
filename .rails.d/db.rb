@@ -37,14 +37,39 @@ module DatabaseHelpers
   end
 
   def table_size
+    adapter = Rails.application.class.config.database_configuration[Rails.env]["adapter"]
     dbname = Rails.application.class.config.database_configuration[Rails.env]["database"]
-    query = %(SELECT table_name AS "Tables", 
-    round(((data_length + index_length) / 1024 / 1024), 2) "size" 
-    FROM information_schema.TABLES 
-    WHERE table_schema = "#{dbname}";)
+    if adapter =~ /mysql/
+      query = %(SELECT table_name AS "Tables",
+      round(((data_length + index_length) / 1024 / 1024), 2) "size"
+      FROM information_schema.TABLES
+      WHERE table_schema = "#{dbname}"
+      ORDER BY size;)
+    elsif adapter =~ /postgresql/
+      query = %(
+        SELECT
+          table_name,
+          pg_size_pretty(table_size) AS table_size,
+          pg_size_pretty(indexes_size) AS indexes_size,
+          pg_size_pretty(total_size) AS total_size
+        FROM (
+          SELECT
+            table_name,
+            pg_table_size(table_name) AS table_size,
+            pg_indexes_size(table_name) AS indexes_size,
+            pg_total_relation_size(table_name) AS total_size
+          FROM (
+            SELECT table_name AS table_name
+            FROM information_schema.tables
+            WHERE table_schema = 'public'
+          ) AS all_tables
+          ORDER BY total_size
+        ) AS pretty_sizes
+     )
+    end
 
     result = ActiveRecord::Base.connection.select_all(query)
-    hirb result.sort{|a, b| a["size"] <=> b["size"] }
+    hirb result#.sort{|a, b| b["size"] <=> a["size"] }
   end
 
 end
