@@ -1,0 +1,12 @@
+\set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
+\timing
+\pset format wrapped
+-- If a command is run more than once in a row, only store it once in the
+-- history.
+\set HISTCONTROL ignoredups
+-- Autocomplete keywords (like SELECT) in upper-case, even if you started
+-- typing them in lower case.
+\set COMP_KEYWORD_CASE upper
+\set VERBOSITY verbose
+
+\set activity 'select * from pg_stat_activity'
