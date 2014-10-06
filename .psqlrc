@@ -1,6 +1,7 @@
 \set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
 \timing
 \pset format wrapped
+\pset null '[NULL]'
 -- If a command is run more than once in a row, only store it once in the
 -- history.
 \set HISTCONTROL ignoredups
@@ -9,6 +10,6 @@
 \set COMP_KEYWORD_CASE upper
 \set VERBOSITY verbose
 
-\set activity 'select * from pg_stat_activity'
+\set activity 'select * from pg_stat_activity';
 
 \set table_size 'SELECT table_name, pg_size_pretty(table_size) AS table_size, pg_size_pretty(indexes_size) AS indexes_size, pg_size_pretty(total_size) AS total_size FROM ( SELECT table_name, pg_table_size(table_name) AS table_size, pg_indexes_size(table_name) AS indexes_size, pg_total_relation_size(table_name) AS total_size FROM ( SELECT table_name AS table_name FROM information_schema.tables WHERE table_schema = \'public\') AS all_tables ORDER BY total_size) AS pretty_sizes;'
