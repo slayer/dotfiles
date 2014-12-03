@@ -241,6 +241,7 @@ au BufRead,BufNewFile *.thtml    set filetype=php
 au BufRead,BufNewFile *.rb		set tabstop=2 shiftwidth=2 expandtab autoindent number smarttab foldmethod=syntax
 au BufRead,BufNewFile *.rb		let g:Rubycomplete_rails=1
 au BufRead,BufNewFile *.rb		let g:ruby_fold = 1
+au BufRead,BufNewFile *.go    set filetype=go
 
 " Настройки для SessionMgr
 let g:SessionMgr_AutoManage = 0
@@ -374,64 +375,83 @@ autocmd BufWritePre     * :call TrimWhiteSpace()
 "/
 
 
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-filetype plugin indent on " обязательно!
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
 
-Bundle 'L9'
-Bundle 'tpope/vim-fugitive'
-" Bundle 'lokaltog/vim-easymotion'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'FuzzyFinder'
-Bundle 'rails.vim'
-Bundle 'The-NERD-tree'
-Bundle 'MatchTag'
-Bundle "cucumber.zip"
-Bundle "Markdown"
-Bundle "ragtag.vim"
-Bundle "jQuery"
-Bundle 'Syntastic'
-Bundle "pangloss/vim-javascript"
-" Bundle "vim-haml"
-Bundle "vim-coffee-script"
-Bundle 'coffee.vim'
-Bundle 'less.vim'
-Bundle 'endwise.vim'
-Bundle 'Tagbar'
+Plugin 'DirDiff.vim'
+Plugin 'L9'
+Plugin 'tpope/vim-fugitive'
+" Plugin 'lokaltog/vim-easymotion'
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'FuzzyFinder'
+Plugin 'rails.vim'
+Plugin 'The-NERD-tree'
+Plugin 'MatchTag'
+Plugin 'cucumber.zip'
+Plugin 'Markdown'
+Plugin 'ragtag.vim'
+Plugin 'jQuery'
+Plugin 'Syntastic'
+Plugin 'pangloss/vim-javascript'
+" Plugin 'vim-haml'
+Plugin 'vim-coffee-script'
+Plugin 'coffee.vim'
+Plugin 'go.vim'
+Plugin 'fatih/vim-go'
+Plugin 'Go-Syntax'
+Plugin 'less.vim'
+Plugin 'endwise.vim'
+Plugin 'Tagbar'
 nmap <F8> :TagbarToggle<CR>
 
 " Utility
-Bundle "repeat.vim"
-Bundle "surround.vim"
-Bundle "SuperTab"
-Bundle "file-line"
-Bundle "Align"
-Bundle 'ctrlp.vim'
-Bundle 'delimitMate.vim'
-Bundle 'bling/vim-airline'
+Plugin 'repeat.vim'
+Plugin 'surround.vim'
+Plugin 'SuperTab'
+Plugin 'file-line'
+Plugin 'Align'
+Plugin 'ctrlp.vim'
+Plugin 'delimitMate.vim'
+Plugin 'bling/vim-airline'
 	let g:airline_enable_fugitive=1
 	let g:airline_enable_syntastic=1
 	let g:airline_enable_bufferline=1
   let g:airline_left_sep = '▶'
   let g:airline_right_sep = '◀'
 
-Bundle 'badwolf'
-Bundle 'molokai'
-Bundle 'railscasts'
-Bundle 'twilight256.vim'
-Bundle 'jellybeans.vim'
-Bundle 'morhetz/gruvbox'
-Bundle 'zeis/vim-kolor'
-" colorscheme molokai
-colorscheme badwolf
+Plugin 'badwolf'
+Plugin 'lsdr/monokai'
+Plugin 'railscasts'
+Plugin 'twilight256.vim'
+Plugin 'jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'zeis/vim-kolor'
+
+
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
+" colorscheme badwolf
 " colorscheme railscasts
 
 " tComment
-Bundle "tComment"
+Plugin 'tComment'
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 
 if has("gui_running")
