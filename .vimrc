@@ -431,11 +431,13 @@ Plugin 'bling/vim-airline'
 
 Plugin 'badwolf'
 Plugin 'lsdr/monokai'
+Plugin 'molokai'
 Plugin 'railscasts'
 Plugin 'twilight256.vim'
 Plugin 'jellybeans.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'zeis/vim-kolor'
+Plugin 'gnupg.vim'
 
 
 let g:molokai_original = 1
