@@ -442,7 +442,7 @@ Plugin 'gnupg.vim'
 
 let g:molokai_original = 1
 let g:rehash256 = 1
-colorscheme molokai
+" colorscheme molokai
 " colorscheme badwolf
 " colorscheme railscasts
 
