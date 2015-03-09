@@ -423,9 +423,7 @@ Plugin 'Align'
 Plugin 'ctrlp.vim'
 Plugin 'delimitMate.vim'
 Plugin 'bling/vim-airline'
-	let g:airline_enable_fugitive=1
-	let g:airline_enable_syntastic=1
-	let g:airline_enable_bufferline=1
+	" let g:airline_enable_fugitive=1
   let g:airline_left_sep = '▶'
   let g:airline_right_sep = '◀'
 
@@ -466,7 +464,7 @@ if has("gui_running")
     set columns=115
 
     if has("gui_gnome")
-        set term=gnome-256color
+        " set term=gnome-256color
         colorscheme railscasts
         set guifont=Monospace\ 11
     endif
@@ -492,7 +490,7 @@ else
     "set railscasts colorscheme when running vim in gnome terminal
     if $COLORTERM == 'gnome-terminal'
 				set t_Co=256
-        set term=gnome-256color
+        " set term=gnome-256color
         colorscheme badwolf
     else
         colorscheme badwolf
