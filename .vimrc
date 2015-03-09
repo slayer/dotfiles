@@ -68,8 +68,8 @@ syntax on
 " allow to use backspace instead of "x"
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 
-" НЕ Преобразование Таба в пробелы
-set noexpandtab
+" Преобразование Таба в пробелы
+set expandtab
 
 " Размер табулации по умолчанию
 set shiftwidth=2
