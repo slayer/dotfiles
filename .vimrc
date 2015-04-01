@@ -406,7 +406,6 @@ Plugin 'pangloss/vim-javascript'
 " Plugin 'vim-haml'
 Plugin 'vim-coffee-script'
 Plugin 'coffee.vim'
-Plugin 'go.vim'
 Plugin 'fatih/vim-go'
 Plugin 'Go-Syntax'
 Plugin 'less.vim'
@@ -443,6 +442,8 @@ let g:rehash256 = 1
 " colorscheme molokai
 " colorscheme badwolf
 " colorscheme railscasts
+
+let g:go_fmt_options = '-tabs=false -tabwidth=2'
 
 " tComment
 Plugin 'tComment'
