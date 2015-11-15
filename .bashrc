@@ -54,3 +54,4 @@ shopt -s cdspell checkwinsize cmdhist dotglob
 . ~/.bashrc.d/terminal.sh
 . ~/.bashrc.d/git.sh
 [ -r ~/.bashrc.d/local.sh ] && . ~/.bashrc.d/local.sh
+

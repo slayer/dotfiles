@@ -17,7 +17,7 @@ alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
 alias h=history
 alias q=exit
 alias mtr="mtr --curses"
-alias grep="grep --exclude '*.git*' --exclude '*.svn*' --exclude '*.sw?'"
+alias grep="grep --color=auto --exclude '*.git*' --exclude '*.svn*' --exclude '*.sw?'"
 alias s="sudo"
 alias be="bundle exec"
 alias rmswp="find . -name *.swp -a -type f | xargs rm "
@@ -26,3 +26,8 @@ alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pathbin='export PATH="$PWD/bin:$PATH"' # Useful for bundler binstubs
 alias agi='sudo apt-get install'
 alias acs='apt-cache search'
+
+# docker
+alias d='sudo docker'
+alias dl='sudo docker ps -l -q' # docker latest container
+alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"

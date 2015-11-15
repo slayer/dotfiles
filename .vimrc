@@ -435,6 +435,7 @@ Plugin 'jellybeans.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'zeis/vim-kolor'
 Plugin 'gnupg.vim'
+Plugin 'ekalinin/Dockerfile.vim'
 
 
 let g:molokai_original = 1
