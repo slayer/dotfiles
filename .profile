@@ -1,8 +1,7 @@
 #!/bin/sh
 
 . ~/.bashrc
-[ `id -u` = 600 -a -x /usr/bin/cpp  ] && calendar -A 5
-
+[ `id -nu` = vlad -a -x /usr/bin/cpp -a -f ~/Dropbox/Private/calendar/calendar.birthday ] && calendar -A 5 -f ~/Dropbox/Private/calendar/calendar.birthday
 if [[ -f /etc/bash_completion ]]; then
     . /etc/bash_completion
 fi
