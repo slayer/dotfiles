@@ -26,8 +26,28 @@ alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pathbin='export PATH="$PWD/bin:$PATH"' # Useful for bundler binstubs
 alias agi='sudo apt-get install'
 alias acs='apt-cache search'
+alias G='gnome-open'
 
 # docker
 alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+
+# systemd
+alias sc='sudo systemctl'
+alias sctl='sudo systemctl'
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
+alias restart='sudo systemctl restart'
+
+
+inspath(){
+  if [ -d "$1" ]; then
+    export PATH="$1:$PATH"
+  fi
+}
+addpath(){
+  if [ -d "$1" ]; then
+    export PATH="$PATH:$1"
+  fi
+}
