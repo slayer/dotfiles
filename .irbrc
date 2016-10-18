@@ -28,7 +28,6 @@ begin
   Wirble.init
   Wirble.colorize
 rescue LoadError
-  puts "Error loading Wirble. Run 'sudo gem install wirble' to enable colorized results."
 end
 
 # Dynamic method finding; e.g., "hello".what? == 5 #=> ["length", "size"]
@@ -94,11 +93,7 @@ def time(times = 1)
 end
 
 
-begin
-    require "ap"
-rescue LoadError => err
-    puts "Cannot find awesome_print gem. Please run 'gem install awesome_print' to install it."
-end
+require "ap" rescue nil
 
 begin
   require 'looksee'
@@ -107,7 +102,6 @@ begin
     :module => "\e[1;34m%s\e[0m" # purple
   )
 rescue LoadError
-  puts "Cannot find looksee. Please run 'gem install looksee' to install it."
 end
 
 # Rails on-screen logging
