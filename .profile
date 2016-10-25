@@ -1,7 +1,6 @@
 #!/bin/sh
 
 . ~/.bashrc
-[ `id -nu` = vlad -a -x /usr/bin/cpp -a -f ~/Dropbox/Private/calendar/calendar.birthday ] && calendar -A 5 -f ~/Dropbox/Private/calendar/calendar.birthday
 if [[ -f /etc/bash_completion ]]; then
     . /etc/bash_completion
 fi
@@ -19,6 +18,8 @@ if [ -d ~/dotfiles ]; then
 fi
 
 [ -x /usr/bin/keychain ] && /usr/bin/keychain
+
+[ -r ~/.bash_profile.local ] && source ~/.bash_profile.local
 
 if [ -d "$HOME/.rbenv" ]; then
 	export PATH="$HOME/.rbenv/bin:$PATH"
