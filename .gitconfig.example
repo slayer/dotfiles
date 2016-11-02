@@ -42,12 +42,9 @@
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	pager = less -FRSX
 
-
-
-
-
 [user]
-	email = github@vlad.org.ua
-	name = Vladislav Moskovets
+	email = user@home
+	name = User
+
 [push]
 	default = current
