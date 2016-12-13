@@ -24,14 +24,15 @@ alias rmswp="find . -name *.swp -a -type f | xargs rm "
 alias sshsocks="ssh -fCND 1080 "
 alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pathbin='export PATH="$PWD/bin:$PATH"' # Useful for bundler binstubs
-alias agi='sudo apt-get install'
-alias acs='apt-cache search'
+alias apti='sudo apt install'
+alias apts='apt search'
 alias G='gnome-open'
 
 # docker
 alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
 
 # systemd
 alias sc='sudo systemctl'
