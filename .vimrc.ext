@@ -1,0 +1,184 @@
+" set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+" set keymap=russian-jcukenwin
+
+" Открыть NERDTree
+"au VimEnter *  NERDTree
+
+nmap :Rm :Rmodel
+nmap :Rc :Rcontroller
+nmap :Rv :Rview
+nmap :Rh :Rhelper
+
+
+"add some line space for easy reading
+set linespace=4
+
+"disable visual bell
+set visualbell t_vb=
+
+"try to make possible to navigate within lines of wrapped lines
+nmap <Down> gj
+nmap <Up> gk
+set fo=l
+
+"statusline setup
+set statusline=%f       "tail of the filename
+
+"Git
+set statusline+=%{fugitive#statusline()}
+
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+
+" status line format
+set statusline=%<%f%h%m%r\ %b\ %{fugitive#statusline()}%{&encoding}\ 0x\ \ %l,%c%V\ %P
+"turn off needless toolbar on gvim/mvim
+set guioptions-=T
+
+" Removes trailing spaces
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
+"/
+
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+
+Plugin 'DirDiff.vim'
+Plugin 'L9'
+Plugin 'tpope/vim-fugitive'
+" Plugin 'lokaltog/vim-easymotion'
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'FuzzyFinder'
+Plugin 'rails.vim'
+Plugin 'The-NERD-tree'
+Plugin 'MatchTag'
+Plugin 'cucumber.zip'
+Plugin 'Markdown'
+Plugin 'ragtag.vim'
+Plugin 'jQuery'
+Plugin 'Syntastic'
+Plugin 'pangloss/vim-javascript'
+" Plugin 'vim-haml'
+Plugin 'vim-coffee-script'
+Plugin 'coffee.vim'
+Plugin 'fatih/vim-go'
+Plugin 'Go-Syntax'
+Plugin 'less.vim'
+Plugin 'endwise.vim'
+Plugin 'Tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" Utility
+Plugin 'repeat.vim'
+Plugin 'surround.vim'
+Plugin 'SuperTab'
+Plugin 'file-line'
+Plugin 'Align'
+Plugin 'ctrlp.vim'
+Plugin 'delimitMate.vim'
+Plugin 'bling/vim-airline'
+	" let g:airline_enable_fugitive=1
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+
+Plugin 'badwolf'
+Plugin 'lsdr/monokai'
+Plugin 'molokai'
+Plugin 'railscasts'
+Plugin 'twilight256.vim'
+Plugin 'jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'zeis/vim-kolor'
+Plugin 'gnupg.vim'
+Plugin 'ekalinin/Dockerfile.vim'
+
+
+let g:molokai_original = 1
+let g:rehash256 = 1
+" colorscheme molokai
+" colorscheme badwolf
+" colorscheme railscasts
+
+let g:go_fmt_options = '-tabs=false -tabwidth=2'
+
+" tComment
+Plugin 'tComment'
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+if has("gui_running")
+    "tell the term has 256 colors
+    set t_Co=256
+
+    colorscheme railscasts
+    set guitablabel=%M%t
+    set lines=40
+    set columns=115
+
+    if has("gui_gnome")
+        " set term=gnome-256color
+        colorscheme railscasts
+        set guifont=Monospace\ 11
+    endif
+
+    if has("gui_mac") || has("gui_macvim")
+        set guifont=Menlo:h14
+        " key binding for Command-T to behave properly
+        " uncomment to replace the Mac Command-T key to Command-T plugin
+        "macmenu &File.New\ Tab key=<nop>
+        "map <D-t> :CommandT<CR>
+        " make Mac's Option key behave as the Meta key
+    endif
+
+    if has("gui_win32") || has("gui_win32s")
+        set guifont=Consolas:h12
+        set enc=utf-8
+    endif
+else
+    "dont load csapprox if there is no gui support - silences an annoying warning
+    let g:CSApprox_loaded = 1
+
+
+    "set railscasts colorscheme when running vim in gnome terminal
+    if $COLORTERM == 'gnome-terminal'
+				set t_Co=256
+        " set term=gnome-256color
+        colorscheme badwolf
+    else
+        colorscheme badwolf
+    endif
+endif
+
+set nowrap
+set lsp=1 " межстрочный интервал"
+if &term =~ '256color'
+	" Disable Background Color Erase (BCE) so that color schemes
+	" work properly when Vim is used inside tmux and GNU screen.
+	" See also http://snk.tuxfamily.org/log/vim-256color-bce.html
+	set t_ut=
+endif
+set ttyfast " ?
+
