@@ -198,7 +198,6 @@ set mps-=[:]
 " set background=dark
 " highlight Comment ctermfg=darkgreen
 " highlight Comment ctermfg=darkgrey
-"colorscheme torte
 set ignorecase
 
 autocmd BufRead *.c								imap {<CR> {<CR>}<Esc>O
