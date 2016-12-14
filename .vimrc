@@ -215,14 +215,7 @@ set ffs=unix,dos,mac
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 
 
-if filereadable(expand($HOME . "/.vim/vimrc"))
-  source ~/.vim/vimrc
-endif
-
-if filereadable(expand($HOME . "/dotfiles/.vimrc.ext"))
- source ~/dotfiles/.vimrc.ext
-endif
-
+colorscheme peachpuff
 " open NERDTree
 "au VimEnter *  NERDTree
 
@@ -288,4 +281,11 @@ if &term =~ '256color'
 	set t_ut=
 endif
 
-colorscheme peachpuff
+if filereadable(expand($HOME . "/.vim/vimrc"))
+  source ~/.vim/vimrc
+endif
+
+if filereadable(expand($HOME . "/dotfiles/.vimrc.ext"))
+ source ~/dotfiles/.vimrc.ext
+endif
+
