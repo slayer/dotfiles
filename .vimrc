@@ -109,6 +109,10 @@ imap <F2> <esc>:w<cr>i
 nmap <F3> :copen<cr>
 vmap <F3> <esc>:copen<cr>
 imap <F3> <esc>:copen<cr>
+" F4 - toggle paste
+nmap <F4> :set invpaste paste?<CR>
+vmap <F4> <esc>:set invpaste paste?<CR>
+imap <F4> <esc>:set invpaste paste?<CR>
 " F5 - show buffer list
 nmap <F5> <Esc>:BufExplorer<cr>
 vmap <F5> <esc>:BufExplorer<cr>
