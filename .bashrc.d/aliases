@@ -12,8 +12,9 @@ alias j=jobs
 alias ..="cd .."
 alias pu="pushd"
 alias po="popd"
-alias c=clear
+alias c='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
 alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
+alias dums='du -ms * | sort -n'
 alias h=history
 alias q=exit
 alias mtr="mtr --curses"
@@ -28,11 +29,13 @@ alias apti='sudo apt install'
 alias apts='apt search'
 alias G='gnome-open'
 
+
 # docker
 alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
+alias docker-rm-unused-images='docker rmi $(docker images | grep "<none>"  | awk "{print \$3}")'
 
 # systemd
 alias sc='sudo systemctl'
