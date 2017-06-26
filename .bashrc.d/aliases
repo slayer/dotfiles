@@ -35,7 +35,8 @@ alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
-alias docker-rm-unused-images='docker rmi $(docker images | grep "<none>"  | awk "{print \$3}")'
+alias docker-rm-unused-images='docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
+alias docker-rm-unused-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 if [ -x "`which kubectl 2>/dev/null`" ]; then
   alias k='kubectl'
   source <(kubectl completion bash)
