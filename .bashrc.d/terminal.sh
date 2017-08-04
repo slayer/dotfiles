@@ -8,6 +8,10 @@
 #fi
 # for ((x=0; x<=255; x++));do echo -e "${x}:\033[38;5;${x}mcolor\033[000m";done
 
+## local.sh example:
+# PS1='${debian_chroot:+($debian_chroot)}\[\033[0;38;5;140m\]\u@\h\[\033[00m\] \[\033[00m\]\w\[\033[00m\] \$ '
+# source ~/.bashrc.d/git.sh
+
 case "$TERM" in
 	xterm*|rxvt*|screen*)
     if [ `id -u` = 0 ]; then

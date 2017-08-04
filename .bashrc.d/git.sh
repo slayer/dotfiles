@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -x `which git` ]; then
+if [ -x "`which git`" ]; then
 	. ~/.bashrc.d/git-completion.sh
 	. ~/.bashrc.d/git-shortcuts.sh
 fi
