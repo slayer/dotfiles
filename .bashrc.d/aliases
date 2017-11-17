@@ -14,7 +14,7 @@ alias pu="pushd"
 alias po="popd"
 alias c='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
 alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
-alias dums='du -ms * | sort -n'
+alias dums='du -ms -- * | sort -n'
 alias h=history
 alias q=exit
 alias mtr="mtr --curses"
@@ -35,6 +35,11 @@ alias show-tcp-listen='sudo netstat -pant|grep LISTEN'
 alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+alias dc='docker-compose'
+alias dockc='docker-compose'
+alias dockps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dockexecl='docker exec -i -t $(docker ps -l -q) /bin/bash'
+
 alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
 alias docker-rm-unused-images='docker images --filter "dangling=true" -q --no-trunc | xargs --no-run-if-empty docker rmi'
 alias docker-rm-unused-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
