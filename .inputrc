@@ -5,11 +5,22 @@ set completion-map-case on
 set echo-control-characters off
 set expand-tilde off
 
-$if term=xterm-256color
-  "\e[1~": beginning-of-line
-	"\e[4~": end-of-line
-	"\e\e[C": forward-word
-	"\e\e[D": backward-word
-  "\e[5~": history-search-backward
-  "\e[6~": history-search-forward
-$endif
+# $if term=xterm-256color
+#   "\e[1~": beginning-of-line
+# 	"\e[4~": end-of-line
+# 	"\e\e[C": forward-word
+# 	"\e\e[D": backward-word
+#   "\e[5~": history-search-backward
+#   "\e[6~": history-search-forward
+# $endif
+
+# ctrl+arrows
+"\e[1;5D": backward-word #
+"\e[1;5C": forward-word
+
+# alt+arrows
+"\e[1;3D": backward-word
+"\e[1;3C": forward-word
+# home/end keys
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
