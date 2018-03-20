@@ -25,6 +25,7 @@ alias rmswp="find . -name *.swp -a -type f | xargs rm "
 alias sshsocks="ssh -fCND 1080 "
 alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pathbin='export PATH="$PWD/bin:$PATH"' # Useful for bundler binstubs
+alias apt='sudo apt'
 alias apti='sudo apt install'
 alias apts='apt search'
 alias G='gnome-open'
@@ -44,10 +45,8 @@ alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastome
 alias docker-rm-unused-images='docker images --filter "dangling=true" -q --no-trunc | xargs --no-run-if-empty docker rmi'
 alias docker-rm-unused-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 alias docker-rm-stopped-containers='docker ps --filter "status=exited" -q --no-trunc | xargs --no-run-if-empty docker rm'
-if [ -x "`which kubectl 2>/dev/null`" ]; then
-  alias k='kubectl'
-  source <(kubectl completion bash)
-fi
+alias k='kubectl'
+alias kcompl="source <(kubectl completion bash)"
 
 
 # systemd
@@ -57,6 +56,9 @@ alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
 alias restart='sudo systemctl restart'
 alias status='sudo systemctl status'
+
+# clipboard copy
+alias pbcopy="xclip -sel clip"
 
 
 inspath(){
