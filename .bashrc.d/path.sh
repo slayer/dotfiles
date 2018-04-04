@@ -5,10 +5,10 @@ if [ -d ~/bin ] ; then
   export PATH=~/bin:"${PATH}"
 fi
 
-# for dir in /opt/*; do
-#   if [ "${dir}/bin" ]; then
-#     export PATH=$PATH:${dir}/bin
-#   fi
-# done
+for dir in /opt/*; do
+  if [ "${dir}/bin" ]; then
+    export PATH=$PATH:${dir}/bin
+  fi
+done
 
 
