@@ -41,6 +41,7 @@ alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate
 alias dc='docker-compose'
 alias dockc='docker-compose'
 alias dockps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dockports='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"'
 alias dockexecl='docker exec -i -t $(docker ps -l -q) /bin/bash'
 
 alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
