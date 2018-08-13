@@ -39,6 +39,9 @@ alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 alias dc='docker-compose'
+alias dce='docker-compose exec '
+alias dclf='docker-compose logs -f --tail=100'
+alias dcrm='docker-compose rm -sf'
 alias dockc='docker-compose'
 alias dockps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias dockports='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"'
