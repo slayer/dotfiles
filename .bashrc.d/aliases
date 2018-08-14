@@ -32,7 +32,9 @@ alias apti='sudo apt install'
 alias apts='apt search'
 alias G='gnome-open'
 
+# network
 alias show-tcp-listen='sudo netstat -pant|grep LISTEN'
+alias ipaddr="ip addr | awk '/^[0-9]+/ { curriface=\$2 } \$1 == \"inet\" { split( \$2, foo, \"/\" ); print curriface ,foo[1] }'" # pretty ip addr
 
 # docker
 alias d='sudo docker'
