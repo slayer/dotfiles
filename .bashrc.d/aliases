@@ -16,6 +16,7 @@ alias pu="pushd"
 alias po="popd"
 alias c='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
 alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
+alias psf='ps auxfw'
 alias dums='du -ms -- * | sort -n'
 alias h=history
 alias q=exit
