@@ -5,8 +5,8 @@ alias ll='ls $LS_OPTIONS -lh'
 alias l='ls  $LS_OPTIONS -lAh'
 alias la='ls $LS_OPTIONS -lah'
 alias df='df -h'
+alias free='free -hw'
 
-alias esx='exec screen -x'
 alias essh='exec ssh'
 alias j=jobs
 alias ..="cd .."
@@ -15,9 +15,8 @@ alias ....="cd ../../.."
 alias pu="pushd"
 alias po="popd"
 alias c='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
-alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
-alias psf='ps auxfw'
-alias dums='du -ms -- * | sort -n'
+alias dums='du -msc -- * | sort -n'
+alias duks='du -ksc -- * | sort -n'
 alias h=history
 alias q=exit
 alias mtr="mtr --curses"
@@ -33,29 +32,36 @@ alias apti='sudo apt install'
 alias apts='apt search'
 alias G='gnome-open'
 
+# processes
+alias pps='ps -u "$USER" -o user,pid,ppid,pcpu,pmem,args'
+alias psf='ps auxfw | less -S'
+alias show-oom-score="while read -r pid comm; do printf '%d\\t%d\\t%s\\n' \"\$pid\" \"\$(cat /proc/\$pid/oom_score)\" \"\$comm\"; done < <(ps -e -o pid= -o comm=)"
+
+
 # network
 alias show-tcp-listen='sudo netstat -pant|grep LISTEN'
 alias ipaddr="ip addr | awk '/^[0-9]+/ { curriface=\$2 } \$1 == \"inet\" { split( \$2, foo, \"/\" ); print curriface ,foo[1] }'" # pretty ip addr
+alias p='ping'
 
 # docker
 alias d='sudo docker'
 alias dl='sudo docker ps -l -q' # docker latest container
 alias dockviz="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
-alias dc='docker-compose'
-alias dce='docker-compose exec '
-alias dclf='docker-compose logs -f --tail=100'
-alias dcrm='docker-compose rm -sf'
-alias dockc='docker-compose'
+alias dc='docker-compose ${DOCKER_COMPOSE_OPTIONS}'
+alias dce='docker-compose ${DOCKER_COMPOSE_OPTIONS} exec '
+alias dclf='docker-compose ${DOCKER_COMPOSE_OPTIONS} logs -f --tail=100'
+alias dcrm='docker-compose ${DOCKER_COMPOSE_OPTIONS} rm -sf'
 alias dockps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias dockports='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"'
 alias dockexecl='docker exec -i -t $(docker ps -l -q) /bin/bash'
 
-alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
+# alias sen='docker run -v /run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen'
 alias docker-rm-unused-images='docker images --filter "dangling=true" -q --no-trunc | xargs --no-run-if-empty docker rmi'
 alias docker-rm-unused-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 alias docker-rm-stopped-containers='docker ps --filter "status=exited" -q --no-trunc | xargs --no-run-if-empty docker rm'
 alias k='kubectl'
 alias kcompl="source <(kubectl completion bash)"
+# [[ "$(type -t __start_kubectl)" = "function" ]] && complete -o default -F __start_kubectl k
 
 
 # systemd
