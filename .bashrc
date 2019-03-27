@@ -47,10 +47,6 @@ function  logread          { local file=/var/log/syslog; local cmd=less; [ "x$1x
 
 shopt -s cdspell checkwinsize cmdhist dotglob
 
-. ~/.bashrc.d/misc-env.sh
-. ~/.bashrc.d/aliases
-. ~/.bashrc.d/rails.sh
-. ~/.bashrc.d/path.sh
-. ~/.bashrc.d/terminal.sh
-. ~/.bashrc.d/git.sh
-[ -r ~/.bashrc.d/local.sh ] && . ~/.bashrc.d/local.sh
+for f in ~/.bashrc.d/*.sh; do
+  . $f
+done
