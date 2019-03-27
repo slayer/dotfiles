@@ -6,9 +6,9 @@
 #else
     #host_color="1;$((31 + $(hostname | cksum | cut -c1-3) % 6))";
 #fi
-# for ((x=0; x<=255; x++));do echo -e "${x}:\033[38;5;${x}mcolor\033[000m";done
 
 ## local.sh example:
+# # for ((x=0; x<=255; x++));do echo -e "${x}:\033[38;5;${x}mcolor\033[000m";done
 # PS1='${debian_chroot:+($debian_chroot)}\[\033[0;38;5;140m\]\u@\h\[\033[00m\] \[\033[00m\]\w\[\033[00m\] \$ '
 #                                                       ^ this code
 # source ~/.bashrc.d/git.sh
@@ -28,6 +28,12 @@ esac
 HISTCONTROL=ignoreboth
 shopt -s checkwinsize
 shopt -s histappend
+
+set-random-prompt-color(){
+  local color="$((${RANDOM}%200+9))"
+  echo PS1="'"'\[\033[0;38;5;'${color}'m\]\u@\h\[\033[00m\] \[\033[00m\]\w\[\033[00m\] \$ '"'" >~/.bashrc.d/local-prompt.sh
+  . ~/.bashrc.d/local-prompt.sh
+}
 
 # Disable Ctrl-S
 stty stop '' 2>/dev/null || true
