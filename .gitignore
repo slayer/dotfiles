@@ -1,5 +1,6 @@
 .other
 *.swp
+*.swo
 .now
 .update
 .bash_profile.local

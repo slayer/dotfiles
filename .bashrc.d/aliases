@@ -6,7 +6,10 @@ alias l='ls  $LS_OPTIONS -lAh'
 alias la='ls $LS_OPTIONS -lah'
 alias df='df -h'
 alias free='free -hw'
+alias pg="${PAGER:-less}"
 
+alias tms="tmux split -h"  # horisontal
+alias tmsv="tmux split -v" # vertical
 alias essh='exec ssh'
 alias j=jobs
 alias ..="cd .."
@@ -59,9 +62,7 @@ alias dockexecl='docker exec -i -t $(docker ps -l -q) /bin/bash'
 alias docker-rm-unused-images='docker images --filter "dangling=true" -q --no-trunc | xargs --no-run-if-empty docker rmi'
 alias docker-rm-unused-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 alias docker-rm-stopped-containers='docker ps --filter "status=exited" -q --no-trunc | xargs --no-run-if-empty docker rm'
-alias k='kubectl'
-alias kcompl="source <(kubectl completion bash)"
-# [[ "$(type -t __start_kubectl)" = "function" ]] && complete -o default -F __start_kubectl k
+
 
 
 # systemd
@@ -75,6 +76,13 @@ alias status='sudo systemctl status'
 # clipboard copy
 alias pbcopy="xclip -sel clip"
 
+
+# gcloud
+alias gssh='gcloud compute ssh'
+alias gscp='gcloud compute scp'
+alias gcp-instances-list='gcloud compute instances list'
+alias gcp-instances-start='gcloud compute instances start '
+alias gcp-instances-stop='gcloud compute instances stop '
 
 inspath(){
   if [ -d "$1" ]; then
