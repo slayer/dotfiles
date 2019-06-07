@@ -31,7 +31,7 @@ shopt -s histappend
 
 set-random-prompt-color(){
   local color="$((${RANDOM}%200+9))"
-  echo PS1="'"'\[\033[0;38;5;'${color}'m\]\u@\h\[\033[00m\] \[\033[00m\]\w\[\033[00m\] \$ '"'" >~/.bashrc.d/local-prompt.sh
+  echo PS1="'"'\[\033[0;38;5;'${color}'m\]\u@\h\[\033[00m\] \[\033[00m\]\w\[\033[00m\] \$ '"'" >~/.bashrc.d/90-local-prompt.sh
   . ~/.bashrc.d/local-prompt.sh
 }
 
