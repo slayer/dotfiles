@@ -17,12 +17,12 @@ if [ -d ~/dotfiles ]; then
 	fi
 fi
 
-[ -x /usr/bin/keychain ] && /usr/bin/keychain
+[ -x /usr/bin/keychain ] && /usr/bin/keychain -q
 
 [ -r ~/.bash_profile.local ] && source ~/.bash_profile.local
 
-if [ -d "$HOME/.rbenv" ]; then
-	export PATH="$HOME/.rbenv/bin:$PATH"
+if [[ ":$PATH:" != *"${HOME}/.rbenv/bin:"* ]] && [[ -d "$HOME/.rbenv" ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
 	eval "$(rbenv init -)"
 fi
 
