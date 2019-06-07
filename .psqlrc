@@ -5,7 +5,8 @@
 \set QUIET 1
 
 \x auto
-\set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
+-- \set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
+\set PROMPT1 '%[%033[33;3m%]%x%[%033[0m%]%[%033[1;33m%]%/%[%033[0m%]%R%# '
 \timing
 \pset format wrapped
 \pset null '[NULL]'
@@ -20,5 +21,36 @@
 
 \set activity 'select * from pg_stat_activity';
 \set table_size 'SELECT table_name, pg_size_pretty(table_size) AS table_size, pg_size_pretty(indexes_size) AS indexes_size, pg_size_pretty(total_size) AS total_size FROM ( SELECT table_name, pg_table_size(table_name) AS table_size, pg_indexes_size(table_name) AS indexes_size, pg_total_relation_size(table_name) AS total_size FROM ( SELECT table_name AS table_name FROM information_schema.tables WHERE table_schema = \'public\') AS all_tables ORDER BY total_size) AS pretty_sizes;'
+
+-- Switch pagers with :x and :xx commands
+\set x '\\setenv PAGER less -S'
+\set xx '\\setenv PAGER \'pspg -bX --no-mouse\''
+
+
+\echo 'Administrative queries:\n'
+\echo '\t\t\t:settings\t-- Server Settings'
+\echo '\t\t\t:conninfo\t-- Server connections'
+\echo '\t\t\t:activity\t-- Server activity'
+\echo '\t\t\t:locks\t\t-- Lock info'
+\echo '\t\t\t:blocks\t\t-- Blocked and blocking activity'
+\echo '\t\t\t:waits\t\t-- Waiting queires'
+\echo '\t\t\t:dbsize\t\t-- Database Size'
+\echo '\t\t\t:table_size\t-- Tables Size'
+\echo '\t\t\t:uptime\t\t-- Server uptime'
+\echo '\t\t\t:menu\t\t-- Help Menu'
+\echo '\t\t\t\\h\t\t-- Help with SQL commands'
+\echo '\t\t\t\\?\t\t-- Help with psql commands\n'
+
+
+\set settings 'select name, setting,unit,context from pg_settings;'
+\set locks  'SELECT bl.pid AS blocked_pid, a.usename AS blocked_user, kl.pid AS blocking_pid, ka.usename AS blocking_user, a.query AS blocked_statement FROM pg_catalog.pg_locks bl JOIN pg_catalog.pg_stat_activity a ON bl.pid = a.pid JOIN pg_catalog.pg_locks kl JOIN pg_catalog.pg_stat_activity ka ON kl.pid = ka.pid ON bl.transactionid = kl.transactionid AND bl.pid != kl.pid WHERE NOT bl.granted;'
+\set conninfo 'select usename, count(*) from pg_stat_activity group by usename;'
+\set activity 'select datname, pid, usename, application_name,client_addr, client_hostname, client_port, query, state from pg_stat_activity;'
+\set waits 'SELECT pg_stat_activity.pid, pg_stat_activity.query, pg_stat_activity.waiting, now() - pg_stat_activity.query_start AS \"totaltime\", pg_stat_activity.backend_start FROM pg_stat_activity WHERE pg_stat_activity.query !~ \'%IDLE%\'::text AND pg_stat_activity.waiting = true;'
+\set dbsize 'SELECT datname, pg_size_pretty(pg_database_size(datname)) db_size FROM pg_database ORDER BY db_size;'
+\set uptime 'select now() - pg_postmaster_start_time() AS uptime;'
+\set blocks 'SELECT blocked_locks.pid     AS blocked_pid, blocked_activity.usename  AS blocked_user, blocking_locks.pid     AS blocking_pid, blocking_activity.usename AS blocking_user, blocked_activity.query    AS blocked_statement, blocking_activity.query   AS current_statement_in_blocking_process FROM  pg_catalog.pg_locks         blocked_locks JOIN pg_catalog.pg_stat_activity blocked_activity  ON blocked_activity.pid = blocked_locks.pid JOIN pg_catalog.pg_locks         blocking_locks ON blocking_locks.locktype = blocked_locks.locktype AND blocking_locks.DATABASE IS NOT DISTINCT FROM blocked_locks.DATABASE AND blocking_locks.relation IS NOT DISTINCT FROM blocked_locks.relation AND blocking_locks.page IS NOT DISTINCT FROM blocked_locks.page AND blocking_locks.tuple IS NOT DISTINCT FROM blocked_locks.tuple AND blocking_locks.virtualxid IS NOT DISTINCT FROM blocked_locks.virtualxid AND blocking_locks.transactionid IS NOT DISTINCT FROM blocked_locks.transactionid AND blocking_locks.classid IS NOT DISTINCT FROM blocked_locks.classid AND blocking_locks.objid IS NOT DISTINCT FROM blocked_locks.objid AND blocking_locks.objsubid IS NOT DISTINCT FROM blocked_locks.objsubid AND blocking_locks.pid != blocked_locks.pid JOIN pg_catalog.pg_stat_activity blocking_activity ON blocking_activity.pid = blocking_locks.pid WHERE NOT blocked_locks.GRANTED;'
+\set blocks2 'SELECT a.datname, l.relation::regclass, l.transactionid, l.mode, l.GRANTED, a.usename, a.query, a.query_start, age(now(), a.query_start) AS "age", a.pid FROM pg_stat_activity a JOIN pg_locks l ON l.pid = a.pid ORDER BY a.query_start; '
+
 
 \unset QUIET
