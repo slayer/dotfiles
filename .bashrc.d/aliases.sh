@@ -17,7 +17,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias pu="pushd"
 alias po="popd"
-alias c='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
+alias cls='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
 alias dums='du -msc -- * | sort -n'
 alias duks='du -ksc -- * | sort -n'
 alias h=history
@@ -31,8 +31,9 @@ alias sshsocks="ssh -fCND 1080 "
 alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pathbin='export PATH="$PWD/bin:$PATH"' # Useful for bundler binstubs
 alias apt='sudo apt'
-alias apti='sudo apt install'
+alias apti='sudo apt install -y'
 alias apts='apt search'
+alias aptu='apt update'
 alias G='gnome-open'
 
 # processes
@@ -83,6 +84,7 @@ alias gscp='gcloud compute scp'
 alias gcp-instances-list='gcloud compute instances list'
 alias gcp-instances-start='gcloud compute instances start '
 alias gcp-instances-stop='gcloud compute instances stop '
+alias gcp-instances-describe='gcloud compute instances describe '
 
 inspath(){
   if [ -d "$1" ]; then
