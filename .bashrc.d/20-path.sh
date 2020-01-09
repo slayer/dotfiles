@@ -5,6 +5,11 @@ if [[ ":$PATH:" != *"${HOME}/bin:"* ]] && [[ -d ${HOME}/bin ]] ; then
   export PATH=${HOME}/bin:"${PATH}"
 fi
 
+# add ~/.local/bin
+if [[ ":$PATH:" != *"${HOME}/.local/bin:"* ]] && [[ -d ${HOME}/.local/bin ]] ; then
+  export PATH=${HOME}/.local/bin:"${PATH}"
+fi
+
 # if [[ ":$PATH:" != *"${HOME}/.linuxbrew/bin:"* ]] && [[ -d ${HOME}/.linuxbrew/bin ]]; then
 #   export PATH="${HOME}/.linuxbrew/bin:$PATH"
 #   export MANPATH="${HOME}/.linuxbrew/share/man:$MANPATH"

@@ -7,16 +7,15 @@ alias la='ls $LS_OPTIONS -lah'
 alias df='df -h'
 alias free='free -hw'
 alias pg="${PAGER:-less}"
+alias e="${EDITOR:-vi}"
+alias ff="find . -print -name"
 
 alias tms="tmux split -h"  # horisontal
 alias tmsv="tmux split -v" # vertical
-alias essh='exec ssh'
-alias j=jobs
+alias j="jobs -l"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias pu="pushd"
-alias po="popd"
 alias cls='reset; stty sane; tput rs1; clear; echo -ne "\033c"'
 alias dums='du -msc -- * | sort -n'
 alias duks='du -ksc -- * | sort -n'
@@ -26,14 +25,11 @@ alias mtr="mtr --curses"
 alias grep="grep --color=auto --exclude '*.git*' --exclude '*.svn*' --exclude '*.sw?'"
 alias s="sudo"
 alias be="bundle exec"
-alias rmswp="find . -name *.swp -a -type f | xargs rm "
 alias sshsocks="ssh -fCND 1080 "
 alias clear_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pathbin='export PATH="$PWD/bin:$PATH"' # Useful for bundler binstubs
 alias apt='sudo apt'
-alias apti='sudo apt install -y'
-alias apts='apt search'
-alias aptu='apt update'
+alias aptuu='apt update && apt upgrade'
 alias G='gnome-open'
 
 # processes
@@ -55,6 +51,7 @@ alias dc='docker-compose ${DOCKER_COMPOSE_OPTIONS}'
 alias dce='docker-compose ${DOCKER_COMPOSE_OPTIONS} exec '
 alias dclf='docker-compose ${DOCKER_COMPOSE_OPTIONS} logs -f --tail=100'
 alias dcrm='docker-compose ${DOCKER_COMPOSE_OPTIONS} rm -sf'
+function dcrestart() { dcrm $1 && dc up -d $1; dclf $1; }
 alias dockps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias dockports='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"'
 alias dockexecl='docker exec -i -t $(docker ps -l -q) /bin/bash'
@@ -79,12 +76,15 @@ alias pbcopy="xclip -sel clip"
 
 
 # gcloud
-alias gssh='gcloud compute ssh'
+alias gssh='gcloud beta compute ssh --tunnel-through-iap '
+alias gsshi='gcloud compute ssh --internal-ip '
 alias gscp='gcloud compute scp'
 alias gcp-instances-list='gcloud compute instances list'
 alias gcp-instances-start='gcloud compute instances start '
 alias gcp-instances-stop='gcloud compute instances stop '
+alias gcp-instances-reset='gcloud compute instances reset '
 alias gcp-instances-describe='gcloud compute instances describe '
+alias gcp-ssh='gcloud compute ssh --internal-ip'
 
 inspath(){
   if [ -d "$1" ]; then
@@ -96,3 +96,14 @@ addpath(){
     export PATH="$PATH:$1"
   fi
 }
+
+
+function dirdiff() {
+    # Shell-escape each path:
+    DIR1=$(printf '%q' "$1"); shift
+    DIR2=$(printf '%q' "$1"); shift
+    vim $@ -c "DirDiff $DIR1 $DIR2"
+}
+
+function  sshr()           { ssh root@$1; }
+
