@@ -1,5 +1,5 @@
 if defined?(Rails)
-  app_name = Rails.application.class.parent_name.downcase
+  app_name = Rails.application.class.name.underscore.split('/').first
   app_env  = Rails.env[0...3]
   IRB.conf[:PROMPT] ||= {}
   IRB.conf[:PROMPT][:RAILS] = {
